@@ -10,5 +10,6 @@ class CreateSleepRecords < ActiveRecord::Migration[8.0]
     end
 
     add_index :sleep_records, [:user_id, :clock_in, :sleep_duration]
+    add_index :sleep_records, [:user_id, :created_at]
   end
 end
