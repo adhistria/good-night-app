@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create]
+      resources :follows, only: [:create]
+      delete 'follows/:following_id', to: 'follows#destroy', as: :unfollow_user
     end
   end
   # Defines the root path route ("/")
