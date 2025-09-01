@@ -10,8 +10,8 @@ Rails.application.routes.draw do
       resources :follows, only: [:create]
       delete 'follows/:following_id', to: 'follows#destroy', as: :unfollow_user
 
-      post "/clock_in", to: "sleep_records#clock_in"
-      patch "/clock_out/:id", to: "sleep_records#clock_out"
+      post "/clock_in", to: "sleep_records#clock_in", as: :clock_in
+      patch "/clock_out/:id", to: "sleep_records#clock_out", as: :clock_out
 
       get "/sleep_records", to: "sleep_records#index"
 

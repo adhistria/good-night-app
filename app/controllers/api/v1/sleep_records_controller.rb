@@ -1,4 +1,10 @@
 class Api::V1::SleepRecordsController < ApplicationController
+
+  def index
+    result = FetchSleepRecordService.new(@user, params[:page], params[:per_page]).call
+    render json: result, status: :ok
+  end
+
   def clock_in
     result = ClockInService.new(@user).call
 
