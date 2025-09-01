@@ -14,14 +14,6 @@ Rails.application.routes.draw do
       patch "/clock_out/:id", to: "sleep_records#clock_out", as: :clock_out
 
       get "/sleep_records", to: "sleep_records#index"
-
-      # resources :sleep_records, only: [:index] do
-      #   collection do
-      #     post :clock_in
-      #     post :clock_out
-      #   end
-      # end
-
     end
   end
   # Defines the root path route ("/")
