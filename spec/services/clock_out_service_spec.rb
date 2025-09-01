@@ -27,11 +27,11 @@ RSpec.describe ClockOutService do
     context 'when sleep record does not exist' do
       let(:service) { described_class.new(user, 999) }
 
-      it 'returns an error message' do
+      it 'returns an error errors' do
         result = service.call
 
         expect(result[:success]).to be false
-        expect(result[:message]).to include('not found')
+        expect(result[:errors]).to include('not found')
       end
     end
 
@@ -40,11 +40,11 @@ RSpec.describe ClockOutService do
         sleep_record.update(clock_out: 30.minutes.ago)
       end
 
-      it 'returns an error message' do
+      it 'returns an error errors' do
         result = service.call
 
         expect(result[:success]).to be false
-        expect(result[:message]).to include('Already clocked out')
+        expect(result[:errors]).to include('Already clocked out')
       end
     end
 
@@ -57,7 +57,7 @@ RSpec.describe ClockOutService do
         result = service.call
 
         expect(result[:success]).to be false
-        expect(result[:message]).to include('not found')
+        expect(result[:errors]).to include('not found')
       end
     end
 
@@ -66,7 +66,7 @@ RSpec.describe ClockOutService do
         allow_any_instance_of(SleepRecord).to receive(:update).and_return(false)
       end
 
-      it 'returns an error message' do
+      it 'returns an error errors' do
         result = service.call
 
         expect(result[:success]).to be false

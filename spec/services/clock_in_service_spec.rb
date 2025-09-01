@@ -36,7 +36,7 @@ RSpec.describe ClockInService do
         result = service.call
 
         expect(result[:success]).to be false
-        expect(result[:message]).to include('Already clocked in')
+        expect(result[:errors]).to include('Already clocked in, please clock out first')
         expect(user.sleep_records.count).to eq(1)
       end
     end
