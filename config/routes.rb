@@ -9,6 +9,19 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       resources :follows, only: [:create]
       delete 'follows/:following_id', to: 'follows#destroy', as: :unfollow_user
+
+      post "/clock_in", to: "sleep_records#clock_in"
+      patch "/clock_out/:id", to: "sleep_records#clock_out"
+
+      get "/sleep_records", to: "sleep_records#index"
+
+      # resources :sleep_records, only: [:index] do
+      #   collection do
+      #     post :clock_in
+      #     post :clock_out
+      #   end
+      # end
+
     end
   end
   # Defines the root path route ("/")
